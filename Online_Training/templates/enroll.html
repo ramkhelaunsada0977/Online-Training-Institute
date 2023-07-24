@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Enroll
+{% endblock title %}
+
+{% block Enroll%}
+    active
+{% endblock Enroll%}
+    
+
+
+{% block body %}
+    <br>
+    <div class="row">
+        <h1 class="text-center">Enroll Now</h1>
+        <hr>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% include 'messages.html' %}
+            <form action="/enroll/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="fname"><b>First Name</b></label>
+                    <input type="text" class="form-control" name="fname" id="fname" required>
+                </div>
+                <div class="form-group">
+                    <label for="lname"><b>Last Name</b></label>
+                    <input type="text" class="form-control" name="lname" id="lname" required>
+                </div>
+                <div class="form-group">
+                    <label for="fatherName"><b>Father Name</b></label>
+                    <input type="text" class="form-control" name="fatherName" id="fatherName" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><b>Mobile Number</b></label>
+                    <input type="tel" class="form-control" name="phone" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="alternateNumber"><b>Alternate Phone Number</b></label>
+                    <input type="number" class="form-control" name="alternateNumber" id="alternateNumber">
+                </div>
+                <div class="form-group">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" class="form-control" value="{{request.user.email}}" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="colname"><b>Collage Name</b></label>
+                    <input type="text" class="form-control" name="colname" id="colname" placeholder="Enter Collage Name">
+                </div>
+                <div class="form-group">
+                    <label for="address"><b>Address</b></label>
+                    <input type="text" class="form-control" name="address" id="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="landmark"><b>Landmark</b></label>
+                    <input type="text" class="form-control" name="landmark" id="landmark"required>
+                </div>
+                <div class="form-group">
+                    <label for="street"><b>Street</b></label>
+                    <input type="text" class="form-control" name="street" id="street" required>
+                </div>
+                <div class="form-group">
+                    <label for="city"><b>City</b></label>
+                    <input type="text" class="form-control" name="city" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="pincode"><b>Pin Code</b></label>
+                    <input type="number" class="form-control" name="pincode" id="pincode" required>
+                </div>
+                <div class="form-group">
+                    <label for="comname"><b>Company Name</b></label>
+                    <input type="text" class="form-control" name="comname" id="comname" placeholder="Freshers Mention as NA">
+                </div>
+                <div class="form-group">
+                    <label for="desi"><b>Designation</b></label>
+                    <input type="text" class="form-control" name="desi" id="desi" required>
+                </div>
+                <div class="form-group">
+                    <label for="qualification"><b>Qualification</b></label>
+                    <input type="text" class="form-control" name="qualification" id="qualification" required>
+                </div>
+                <br>
+                
+                <label ><b>Computer Knowledge</b></label>
+                <br>
+                <div class="form-check-inline">
+                    <label for="basic">Basic</label>
+                    <input type="radio" class="form-check-input" id="basic" name="cknowledge" value="Basic" required>
+                </div>
+                <div class="form-check-inline">
+                    <label for="Intermediate">Intermediate</label>
+                    <input type="radio" class="form-check-input" id="Intermediate"name="cknowledge" value="Intermediate"required>
+                </div>
+                <div class="form-check-inline">
+                    <label for="Advance">Advance</label>
+                    <input type="radio" class="form-check-input" id="Advance" name="cknowledge"value="Advance"required>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="scourse"><b>Select Course</b></label>
+                    <select name="scourse" id="scourse" class="form-control" required>
+                        <option value="select">Choose Course</option>
+                        
+                        {% for c in courses %}
+                            <option value="{{c.courseName}}">{{c.courseName}}</option>
+                        {% endfor %}
+                            
+                    </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="ccourse"><b>Confirm Course</b></label>
+                    <select name="ccourse" id="ccourse" class="form-control"required>
+                        <option value="confirm">Select & Confirm</option>
+                        
+                        {% for c in courses %}
+                            <option value="{{c.courseName}}">{{c.courseName}}</option>
+                        {% endfor %}
+                            
+                    </select>
+                </div>
+                <hr>
+                <div class="d-grid gap-2 mb-3">
+                    <button type="submit"class="btn btn-success get-started-btn">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock body %}
+    

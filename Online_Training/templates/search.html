@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search
+{% endblock title %}
+
+{% block Home %}
+    active
+{% endblock Home %}
+    
+
+{% block body %}
+
+    <div class="container mt-2">
+        <h1 class="text-center">Search results</h1>
+        {% include 'messages.html' %}
+        
+        {% if allPosts|length < 1 %}
+            Your Search <b>{{query}} did not match</b>
+            <ul>
+                <li>Make Sure You have Spelled Correct</li>
+            </ul>
+        {% endif %}
+            
+        <div class="row row-cols-1 row-cols-md-3-g-4 bg-light">
+            
+            {% for post in allPosts %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <a href="{{post.imageURL}}"></a><img src="{{post.imageURL}}"  id="card-img" class="card-img-top p-3" alt="not found">
+                        <div class="card-body">
+                            <h3 class="card-title">{{post.title}}</h3>
+                            <p class="card-text"><b>Fee {{post.courseFee}}</b>Rs | <b>Duration {{post.courseDuration}} Months</b>
+                            </p>
+                            <p>Posted By : <b>{{post.authname}}</b></p>
+                            <p>Time Stamp : <b>{{post.timeStamp}}</b></p>
+                            <h4> {{post.stars}}<i class="fa-regular fa-star"></i></h4>
+                            <a href="/course/{{post.courseName}}" class="btn btn-primary">Know More</a>
+                            <a href="/enroll/" class="btn btn-outline-dark">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+                
+        </div>
+    </div>
+{% endblock body %}
+    
+    

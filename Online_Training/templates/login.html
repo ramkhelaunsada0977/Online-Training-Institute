@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login
+{% endblock title %}
+{% block SignIn %}
+    active
+{% endblock SignIn %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <h1 class="text-center text-success">Login</h1>
+        {% include 'messages.html' %}
+        <form action="/auth/login/" method="post">
+            {% csrf_token %}
+            <br>
+            <label for="email">Email</label>
+            <div class="form-group">
+                <input type="email" 
+                class="form-control p-2 mb-2"
+                id="email"
+                name="email"
+                placeholder="Enter Your Email"
+                required/>
+            </div>
+            <label for="pass1">Password</label>
+            <div class="form-group">
+                <input type="password" 
+                class="form-control p-2 mb-2"
+                id="pass1"
+                name="pass1"
+                placeholder="Enter your password"
+                required />
+                <input type="checkbox" onclick="showPassword()"><span id="sp">Show Password</span>
+                <i class="fa-solid fa-eye"></i>
+                <br>
+                
+            </div>
+            <br />
+            <div class="d-grid gap-2 mb-2">
+                <button type="submit" class="btn btn-success get-started-btn">SignIn</button>
+            </div>
+            <br />
+            Register Here? <a href="/auth/signup">SignUp</a>
+            <br />
+            
+
+
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+{% endblock body %}
+
+{% block script %}
+    <script>
+        function showPassword(){
+            var x=document.getElementById("pass1");
+            var y=document.getElementById("sp");
+            if (x.type =="password"){
+                x.type ="text";
+                y.innerText="Hide Password";
+            }
+            else {
+                x.type="password";
+                y.innerText="Show Password";
+            }
+
+        }
+    
+    </script>
+{% endblock script %}

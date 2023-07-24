@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Attendance
+{% endblock title %}
+
+{% block Attendance%}
+    active
+{% endblock Attendance%}
+
+{% block body %}
+    <div class="row">
+        <h1 class="text-center">Apply Attendance</h1>
+        <hr>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% include 'messages.html' %}
+            <form action="/attendance/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="fname"><b>Name </b></label>
+                    <input type="text" class="form-control" value="{{user.first_name}}" name="name"id="name" required>
+                </div>
+                <div class="form-group">
+                    <input type="hidden"name="email"value="{{request.user.email}}" class="form-control"id="email" placeholder="abc@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="date"><b>Date</b></label>
+                    <input type="date" name="date"class="form-control"id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="logintime"><b>Login Time</b></label>
+                    <input type="time" name="logintime" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="logouttime"><b>Logout time</b></label>
+                    <input type="time" class="form-control" name="logouttime" id="logouttime" required>
+                </div>
+                <hr>
+                <div class="d-grid gap-3 mb-3">
+                    <button class="btn btn-success get-started-btn">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock body %}
+    

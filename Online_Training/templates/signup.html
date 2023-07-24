@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Signup
+{% endblock title %}
+
+{% block body %}
+{% load socialaccount %}
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <h1 class="text-center">Signup</h1>
+            <a href="{% provider_login_url 'google' %}" class="alert-link text-center bg-light">Click Here</a>
+            Login with<i class="fa-brands fa-google"></i>
+            {% include 'messages.html' %}
+            <form action="/auth/signup/" method="post">
+                {% csrf_token %}
+                <label for="name">Name</label>
+                <div class="form-group">
+                    <input type="text" 
+                    class="form-control p-2 mb-2"
+                    id="name"
+                    name="name"
+                    placeholder="Enter Your Full Name"
+                    required/>
+                </div>
+                <label for="email">Email</label>
+                <div class="form-group">
+                    <input type="email" 
+                    class="form-control p-2 mb-2"
+                    id="email"
+                    name="email"
+                    placeholder="Enter Your Email"
+                    required/>
+                </div>
+                <label for="pass1">Password</label>
+                <div class="form-group">
+                    <input type="password" 
+                    class="form-control p-2 mb-2"
+                    id="pass1"
+                    name="pass1"
+                    placeholder="Password must be atleast 8 character"
+                    required />
+                    <input type="checkbox" onclick="showPassword()"><span id="sp">Show Password</span>
+                    <i class="fa-solid fa-eye"></i>
+                    <br>
+                    <small>Password must include atleast [1-9][a-z][A-Z][_$@]</small>
+                </div>
+                <label for="pass2">Confirm Password</label>
+                <div class="form-group">
+                    <input type="password" 
+                    class="form-control p-2 mb-2"
+                    id="pass2"
+                    name="pass2"
+                    placeholder="Confirm Password"
+                    required>
+                </div>
+                <br />
+                <div class="d-grid gap-2 mb-2">
+                    <button type="submit" class="btn btn-success get-started-btn">Signup</button>
+                </div>
+                <br />
+                already User? <a href="/auth/login/">Login</a>
+                <br />
+                
+
+
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+{% endblock body %}
+
+
+{% block script %}
+    <script>
+        console.log("working")
+
+        function showPassword(){
+            var x=document.getElementById("pass1");
+            var z=document.getElementById("pass2");
+            var y=document.getElementById("sp");
+            if (x.type =="password" && z.type=="password"){
+                x.type ="text";
+                z.type ="text";
+                y.innerText="Hide Password";
+            }
+            else {
+                x.type="password";
+                z.type ="password";
+                y.innerText="Show Password";
+            }
+
+        }
+    </script>
+{% endblock script %}
+    
+    
+    
